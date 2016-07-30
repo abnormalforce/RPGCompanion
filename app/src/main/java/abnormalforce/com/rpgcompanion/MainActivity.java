@@ -311,7 +311,7 @@ public class MainActivity extends Activity {
             }
 
             //Game gets harder
-            playerStats.put(tagContents, rollInt + 1);
+//            playerStats.put(tagContents, rollInt + 1);
             /**
              * Ideas:
              * Every time a player tags in, increase likelihood of computer freakout.  First X are safe.
@@ -322,10 +322,21 @@ public class MainActivity extends Activity {
              */
 //            mSoundPool.play(soundId.nextInt(5)+1 , 1.0f, 1.0f, 1, 0, 1.0f);
 //            mSoundPool.play(playerMap.get(tagContents).getSoundId(), 1.0f, 1.0f, 1, 0, 1.0f);
-        } else if (tagContents.equals("difficulty_spike")) {
+        } else if (tagContents.equals("ambient")) {
             for(String s : playerStats.keySet()) {
                 playerStats.put(s, playerStats.get(s) + 1);
             }
+
+            Random r = new Random();
+            int ambientId = r.nextInt(5)+1;
+            String currTag = tagContents.concat(ambientId+"");
+            mSoundPool.play(mSoundIds.get(currTag), 1.0f, 1.0f, 1, 0, 1.0f);
+        } else if (tagContents.equals("countdown")) {
+            mSoundPool.play(mSoundIds.get(tagContents), 1.0f, 1.0f, 1, 0, 1.0f);
+        } else if (tagContents.equals("laser_gun")) {
+            mSoundPool.play(mSoundIds.get(tagContents), 1.0f, 1.0f, 1, 0, 1.0f);
+        } else if (tagContents.equals("laser_attack")) {
+            mSoundPool.play(mSoundIds.get(tagContents), 1.0f, 1.0f, 1, 0, 1.0f);
         }
         else {
             Log.d(TAG, "Unrecognized tag detected");
@@ -388,7 +399,7 @@ public class MainActivity extends Activity {
 //        Sound happySuccess = new Sound(SOUNDS_FOLDER + "/happy_success.wav");
 //        Sound happyFailure =  new Sound(SOUNDS_FOLDER + "/happy_failure.wav");
 //        happySuccess.setSoundId(11);
-//        happyFailure.setSoundId(12);
+//        happyFailure.setSoundId(12);play
 //        HashMap<String, Sound> happySounds = new HashMap<>();
 //        happySounds.put("success", happySuccess);
 //        happySounds.put("failure", happyFailure);
